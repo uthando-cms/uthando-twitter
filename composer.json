@@ -1,5 +1,5 @@
 {
-    "name": "uthando-cms/uthando-common",
+    "name": "uthando-cms/uthando-twitter",
     "description": "Twitter module for Uthando CMS",
     "license": "BSD-3-Clause",
     "keywords": [ "framework", "zf2","cms", "uthando", "twitter"],
