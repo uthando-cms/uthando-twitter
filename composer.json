@@ -18,7 +18,7 @@
 	    "php" : ">=5.4",
 	    "uthando-cms/uthando-common" : "dev-master",
 	    "zendframework/zendoauth" : "dev-master",
-		"zendframework/zendservice-twitter" : "2.*"
+	    "zendframework/zendservice-twitter" : ">=2.1.0"
     },
     "require-dev" : {
     	"zendframework/zendframework" : "2.*"
