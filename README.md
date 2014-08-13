@@ -21,7 +21,7 @@ or if you have composer installed globally
 
 * Twitter feed view helper
 	
-## Usageage
+## Usage
 
 Once installed you have to add 'UthandoTwitter' to your 'modules' section of your app 'application.config.php' file.
 
@@ -41,7 +41,7 @@ then fill in the OAuth setting you get from your new twitter app. Also in the 'o
 In the view folder I have included a sample view partial so you can have an idea of how the feed works, to do this copy the contents of 
 the public folder to your apps public folder.
 
-The example uses Twitter Bootstrap 3 so be sure to include this. For example in your layout.phtml file add these lines to youe head section:
+The example uses Twitter Bootstrap 3 so be sure to include this. For example in your layout.phtml file add these lines to your head section:
 
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" media="screen,print" rel="stylesheet" type="text/css">
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" media="screen,print" rel="stylesheet" type="text/css">
