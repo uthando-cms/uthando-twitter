@@ -1,7 +1,6 @@
 <?php
 namespace UthandoTwitter\Model;
 
-use UthandoTwitter\Model\Tweet;
 use UthandoCommon\Model\Collection;
 use Zend\Filter\Word\UnderscoreToCamelCase;
 
