@@ -1,10 +1,10 @@
 <?php
 namespace UthandoTwitter\Model;
 
-use UthandoCommon\Model\Collection;
+use UthandoCommon\Model\AbstractCollection;
 use Zend\Filter\Word\UnderscoreToCamelCase;
 
-class TweetCollection extends Collection
+class TweetCollection extends AbstractCollection
 {
     /**
      * @var string
@@ -69,9 +69,10 @@ class TweetCollection extends Collection
             }
         }
     }
-    
+
     /**
-     * @param array $tweets
+     * @param $tweets
+     * @return int
      */
     public function addTweets($tweets)
     {
@@ -140,7 +141,7 @@ class TweetCollection extends Collection
         return $valid;
     }
 
-	/**
+    /**
      * @return string
      */
     public function getUserName()
@@ -148,104 +149,104 @@ class TweetCollection extends Collection
         return $this->userName;
     }
 
-	/**
-     * @param field_type $userName
+    /**
+     * @param $userName
      */
     public function setUserName($userName)
     {
         $this->userName = (string) $userName;
     }
 
-	/**
-     * @return the $screenName
+    /**
+     * @return string
      */
     public function getScreenName()
     {
         return $this->screenName;
     }
 
-	/**
-     * @param field_type $screenName
+    /**
+     * @param $screenName
      */
     public function setScreenName($screenName)
     {
         $this->screenName = (string) $screenName;
     }
 
-	/**
-     * @return the $displayLimit
+    /**
+     * @return int
      */
     public function getDisplayLimit()
     {
         return $this->displayLimit;
     }
 
-	/**
-     * @param number $displayLimit
+    /**
+     * @param $displayLimit
      */
     public function setDisplayLimit($displayLimit)
     {
         $this->displayLimit = (int) $displayLimit;
     }
 
-	/**
-     * @return the $showDirectTweets
+    /**
+     * @return bool
      */
     public function getShowDirectTweets()
     {
         return $this->showDirectTweets;
     }
 
-	/**
-     * @param boolean $showDirectTweets
+    /**
+     * @param $showDirectTweets
      */
     public function setShowDirectTweets($showDirectTweets)
     {
         $this->showDirectTweets = (bool) $showDirectTweets;
     }
 
-	/**
-     * @return the $showRetweets
+    /**
+     * @return bool
      */
     public function getShowRetweets()
     {
         return $this->showRetweets;
     }
 
-	/**
-     * @param boolean $showRetweets
+    /**
+     * @param $showRetweets
      */
     public function setShowRetweets($showRetweets)
     {
         $this->showRetweets = (bool) $showRetweets;
     }
 
-	/**
-     * @return the $showTweetLinks
+    /**
+     * @return bool
      */
     public function getShowTweetLinks()
     {
         return $this->showTweetLinks;
     }
 
-	/**
-     * @param boolean $showTweetLinks
+    /**
+     * @param $showTweetLinks
      */
     public function setShowTweetLinks($showTweetLinks)
     {
         $this->showTweetLinks = (bool) $showTweetLinks;
     }
 
-	/**
-     * @return the $showProfilePic
+    /**
+     * @return bool
      */
     public function getShowProfilePic()
     {
         return $this->showProfilePic;
     }
 
-	/**
-     * @param boolean $showProfilePic
+    /**
+     * @param $showProfilePic
      */
     public function setShowProfilePic($showProfilePic)
     {
