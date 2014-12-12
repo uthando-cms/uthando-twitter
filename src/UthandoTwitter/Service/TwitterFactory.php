@@ -3,6 +3,7 @@ namespace UthandoTwitter\Service;
 
 use UthandoTwitter\Service\Twitter as TwitterService;
 use Traversable;
+use Zend\Cache\StorageFactory;
 use ZendService\Twitter\Twitter;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -20,12 +21,16 @@ class TwitterFactory implements FactoryInterface
         
         $config = $config['uthando-twitter'];
         $twitter = new Twitter($config['oauth_options']);
+        $cache = (isset($config['cache'])) ? StorageFactory::factory($config['cache']) : null;
+
+        $service = new TwitterService();
         
-        $model = new TwitterService();
+        $service->setOptions($config['options'])
+            ->setTwitter($twitter)
+            ->setCache($cache);
+
+        $service->setCache($cache);
         
-        $model->setOptions($config['options'])
-            ->setTwitter($twitter);
-        
-        return $model;
+        return $service;
     }
 }

@@ -11,7 +11,7 @@ class Twitter
     use CacheTrait;
     
     /**
-     * @var ZendService\Twitter\Twitter
+     * @var TwitterService
      */
     protected $twitter;
     
@@ -19,16 +19,29 @@ class Twitter
      * @var array
      */
     protected $options;
-    
+
+    /**
+     * @param null $screenName
+     * @return array|TweetCollection
+     */
     public function getUserTimeLine($screenName = null)
     {
-        $response = $this->twitter->statusesUserTimeline([
-            'screen_name'   => ($screenName) ? $screenName : $this->getOption('screen_name')
-        ]);
-        
+        $response = $this->getCacheItem($screenName);
+
+        if (!$response) {
+            $response = $this->twitter->statusesUserTimeline([
+                'screen_name'   => ($screenName) ? $screenName : $this->getOption('screen_name')
+            ]);
+            $this->setCacheItem($screenName, $response);
+        }
+
         return $this->processTweets($response);
     }
-    
+
+    /**
+     * @param Response $response
+     * @return array|TweetCollection
+     */
     public function processTweets(Response $response)
     {
         if ($response->isSuccess()) {
@@ -39,7 +52,11 @@ class Twitter
         
         return $tweets;
     }
-    
+
+    /**
+     * @param $option
+     * @return null
+     */
     public function getOption($option)
     {
         if (!in_array($option, $this->options)) {
@@ -48,29 +65,37 @@ class Twitter
         
         return $this->options[$option];
     }
-    
+
+    /**
+     * @param array $options
+     * @return $this
+     */
     public function setOptions(array $options)
     {
         $this->options = $options;
-        
         return $this;
     }
-    
+
+    /**
+     * @return array
+     */
     public function getOptions()
     {
         return $this->options;
     }
-    
+
     /**
-     * @param ZendService\Twitter\Twitter $twitter
+     * @param TwitterService $twitter
+     * @return $this
      */
     public function setTwitter(TwitterService $twitter)
     {
         $this->twitter = $twitter;
+        return $this;
     }
-    
+
     /**
-     * return ZendService\Twitter\Twitter
+     * @return TwitterService
      */
     public function getTwitter()
     {

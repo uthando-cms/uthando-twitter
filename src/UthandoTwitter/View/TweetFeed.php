@@ -21,7 +21,7 @@ class TweetFeed extends AbstractViewHelper
      *
      * @var string|array
      */
-    protected $partial = null;
+    protected $partial = 'uthando-twitter-feed';
     
     public function __invoke()
     {
@@ -107,5 +107,10 @@ class TweetFeed extends AbstractViewHelper
     public function getPartial()
     {
         return $this->partial;
+    }
+
+    public function __toString()
+    {
+        return $this->render();
     }
 }

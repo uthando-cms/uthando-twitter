@@ -33,5 +33,18 @@ return array(
             // show profile picture or not
             'show_profile_pic' => true,
         ),
+        'cache' => array(
+            'adapter' => array(
+                'name' => 'filesystem',
+                'options' => array(
+                    'ttl'                   => 60*60, // one hour
+                    'dirLevel'              => 0,
+                    'cacheDir'              => './data/cache',
+                    'dirPermission'         => '700',
+                    'filePermission'        => '600',
+                ),
+            ),
+            'plugins' => ['Serializer'],
+        ),
     ),
 );
