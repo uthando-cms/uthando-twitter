@@ -21,6 +21,7 @@ class TwitterFactory implements FactoryInterface
         
         $config = $config['uthando-twitter'];
         $twitter = new Twitter($config['oauth_options']);
+
         $cache = (isset($config['cache'])) ? StorageFactory::factory($config['cache']) : null;
 
         $service = new TwitterService();

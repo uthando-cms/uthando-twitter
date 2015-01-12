@@ -31,7 +31,7 @@ class TweetFeed extends AbstractViewHelper
     public function render()
     {
         $partial = $this->getPartial();
-        
+
         return $this->renderPartial($partial);
     }
     
@@ -46,9 +46,17 @@ class TweetFeed extends AbstractViewHelper
                 'Unable to render menu: No partial view script provided'
             );
         }
-    
+
+        $timeLine = $this->getTwitter()->getUserTimeLine();
+
+        if (is_array($timeLine) && $timeLine[0]->code == '32') {
+            $timeLine = [];
+        }
+
+
+
         $model = array(
-            'tweets' => $this->getTwitter()->getUserTimeLine()
+            'tweets' => $timeLine
         );
     
         if (is_array($partial)) {
