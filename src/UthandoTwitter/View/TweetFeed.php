@@ -49,10 +49,6 @@ class TweetFeed extends AbstractViewHelper
 
         $timeLine = $this->getTwitter()->getUserTimeLine();
 
-        if (is_array($timeLine) && $timeLine[0]->code == '32') {
-            $timeLine = [];
-        }
-
         $model = array(
             'tweets' => $timeLine
         );

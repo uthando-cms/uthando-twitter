@@ -48,7 +48,10 @@ class Twitter
         if ($response->isSuccess()) {
             $tweets = new TweetCollection($response->toValue(), $this->getOptions());
         } else {
-            $tweets = $response->getErrors();
+            $errors = $response->getErrors();
+            $tweets = [
+                'errors' => $errors,
+            ];
         }
         
         return $tweets;

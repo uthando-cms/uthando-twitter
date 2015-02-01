@@ -21,12 +21,8 @@ class TwitterController extends AbstractActionController
         /* @var $service \UthandoTwitter\Service\Twitter */
         $service = $this->getService('UthandoTwitter\Service\Twitter');
         
-        //try {
-            $tweets = $service->getUserTimeLine();
-            $viewModel->setVariable('tweets', $tweets);
-        //} catch (\Exception $e) {
-            
-        ///}
+        $tweets = $service->getUserTimeLine();
+        $viewModel->setVariable('tweets', $tweets);
         
         return $viewModel;
     }

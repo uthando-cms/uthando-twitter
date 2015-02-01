@@ -1,4 +1,4 @@
-
+<?php if (!isset($this->tweets['errors'])):?>
 <link href="<?=$this->basePath('/css/tweet-feed.css');?>" media="screen,print" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="<?=$this->basePath('/js/twitter.intent.js')?>"></script>
 
@@ -88,3 +88,10 @@
     </div>
 </div>
 <?php endforeach; ?>
+<?php else: ?>
+<dl>
+    <?php foreach($this->tweets['errors'] as $error):?>
+    <dt> <?=$error->code;?></dt>  <dd>  <?=$error->message;?></dd>
+    <?php endforeach; ?>
+</dl>
+<?php endif; ?>
