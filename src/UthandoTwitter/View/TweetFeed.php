@@ -21,7 +21,7 @@ class TweetFeed extends AbstractViewHelper
      *
      * @var string|array
      */
-    protected $partial = 'uthando-twitter-feed';
+    protected $partial = 'uthando-twitter/twitter/twitter-feed';
     
     public function __invoke()
     {
@@ -52,8 +52,6 @@ class TweetFeed extends AbstractViewHelper
         if (is_array($timeLine) && $timeLine[0]->code == '32') {
             $timeLine = [];
         }
-
-
 
         $model = array(
             'tweets' => $timeLine

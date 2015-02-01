@@ -9,6 +9,15 @@ class Module
         return include __DIR__ . '/config/config.php';
     }
     
+    public function getControllerConfig()
+    {
+        return [
+            'invokables' => [
+                'UthandoTwitter\Controller\Twitter' => 'UthandoTwitter\Controller\TwitterController',
+            ],
+        ];
+    }
+    
     public function getServiceConfig()
     {
     	return [
