@@ -6,34 +6,7 @@ class Module
 {	
     public function getConfig()
     {
-        return include __DIR__ . '/config/config.php';
-    }
-    
-    public function getControllerConfig()
-    {
-        return [
-            'invokables' => [
-                'UthandoTwitter\Controller\Twitter' => 'UthandoTwitter\Controller\TwitterController',
-            ],
-        ];
-    }
-    
-    public function getServiceConfig()
-    {
-    	return [
-            'factories' => [
-                'UthandoTwitter\Service\Twitter' => 'UthandoTwitter\Service\TwitterFactory',
-            ],
-        ];
-    }
-    
-    public function getViewHelperConfig()
-    {
-        return [
-            'invokables' => [
-            	'TweetFeed' => 'UthandoTwitter\View\TweetFeed',
-            ], 
-        ];
+        return include __DIR__ . '/config/module.config.php';
     }
     
     public function getAutoloaderConfig()

@@ -19,6 +19,26 @@ return [
             ],
         ],
     ],
+    'controllers' => [
+        'invokables' => [
+            'UthandoTwitter\Controller\Twitter' => 'UthandoTwitter\Controller\TwitterController',
+        ],
+    ],
+    'service_manager' => [
+        'factories' => [
+            'UthandoTwitter\Service\Twitter' => 'UthandoTwitter\Service\TwitterFactory',
+        ],
+    ],
+    'view_helpers' => [
+        'invokables' => [
+            'TweetFeed' => 'UthandoTwitter\View\TweetFeed',
+        ],
+    ],
+    'view_manager' => [
+        'template_map' => [
+            'uthando-twitter/twitter/twitter-feed' => __DIR__ . '/../view/uthando-twitter/twitter/twitter-feed.phtml',
+        ],
+    ],
     'router' => [
         'routes' => [
             'twitter' => [
@@ -37,11 +57,6 @@ return [
                 ],
                 'may_terminate' => true,
             ],
-        ],
-    ],
-    'view_manager' => [
-        'template_map' => [
-            'uthando-twitter/twitter/twitter-feed' => __DIR__ . '/../view/uthando-twitter/twitter/twitter-feed.phtml',
         ],
     ],
 ];
