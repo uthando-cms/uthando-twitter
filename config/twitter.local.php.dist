@@ -1,6 +1,6 @@
 <?php
 return array(
-    'uthando-twitter' => array(
+    'uthando_twitter' => array(
         'oauth_options' => array(
             'access_token' => array(
                 'token' => 'put your access token here',

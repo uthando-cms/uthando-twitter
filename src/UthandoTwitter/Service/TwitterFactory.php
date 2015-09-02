@@ -19,7 +19,7 @@ class TwitterFactory implements FactoryInterface
             $config = ArrayUtils::iteratorToArray($config);
         }
         
-        $config = $config['uthando-twitter'];
+        $config = $config['uthando_twitter'];
         $twitter = new Twitter($config['oauth_options']);
 
         $cache = (isset($config['cache'])) ? StorageFactory::factory($config['cache']) : null;
