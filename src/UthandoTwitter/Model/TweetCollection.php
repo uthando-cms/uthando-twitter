@@ -6,6 +6,8 @@ use Zend\Filter\Word\UnderscoreToCamelCase;
 
 class TweetCollection extends AbstractCollection
 {
+    protected $entityClass = 'UthandoTwitter\Model\Tweet';
+
     /**
      * @var string
      */
@@ -47,7 +49,7 @@ class TweetCollection extends AbstractCollection
     protected $position = 0;
     
     public function __construct(array $tweets = array(), array $options = array())
-    {   
+    {
         if (!empty($options)) {
             $this->setOptions($options);
         }
@@ -151,10 +153,12 @@ class TweetCollection extends AbstractCollection
 
     /**
      * @param $userName
+     * @return $this
      */
     public function setUserName($userName)
     {
         $this->userName = (string) $userName;
+        return $this;
     }
 
     /**
@@ -167,10 +171,12 @@ class TweetCollection extends AbstractCollection
 
     /**
      * @param $screenName
+     * @return $this
      */
     public function setScreenName($screenName)
     {
         $this->screenName = (string) $screenName;
+        return $this;
     }
 
     /**
@@ -183,10 +189,12 @@ class TweetCollection extends AbstractCollection
 
     /**
      * @param $displayLimit
+     * @return $this
      */
     public function setDisplayLimit($displayLimit)
     {
         $this->displayLimit = (int) $displayLimit;
+        return $this;
     }
 
     /**
@@ -199,10 +207,12 @@ class TweetCollection extends AbstractCollection
 
     /**
      * @param $showDirectTweets
+     * @return $this
      */
     public function setShowDirectTweets($showDirectTweets)
     {
         $this->showDirectTweets = (bool) $showDirectTweets;
+        return $this;
     }
 
     /**
@@ -215,10 +225,12 @@ class TweetCollection extends AbstractCollection
 
     /**
      * @param $showRetweets
+     * @return $this
      */
     public function setShowRetweets($showRetweets)
     {
         $this->showRetweets = (bool) $showRetweets;
+        return $this;
     }
 
     /**
@@ -231,10 +243,12 @@ class TweetCollection extends AbstractCollection
 
     /**
      * @param $showTweetLinks
+     * @return $this
      */
     public function setShowTweetLinks($showTweetLinks)
     {
         $this->showTweetLinks = (bool) $showTweetLinks;
+        return $this;
     }
 
     /**
@@ -247,9 +261,11 @@ class TweetCollection extends AbstractCollection
 
     /**
      * @param $showProfilePic
+     * @return $this
      */
     public function setShowProfilePic($showProfilePic)
     {
         $this->showProfilePic = (bool) $showProfilePic;
+        return $this;
     }
 }

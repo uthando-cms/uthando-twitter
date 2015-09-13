@@ -1,4 +1,12 @@
 # Uthando Twitter Zend Framework 2 Module
+-----------------------------------------
+
+[![Build Status](https://travis-ci.org/uthando-cms/uthando-twitter.svg?branch=master)](https://travis-ci.org/uthando-cms/uthando-twitter)
+[![Test Coverage](https://codeclimate.com/github/uthando-cms/uthando-twitter/badges/coverage.svg)](https://codeclimate.com/github/uthando-cms/uthando-twitter/coverage)
+[![Code Climate](https://codeclimate.com/github/uthando-cms/uthando-twitter/badges/gpa.svg)](https://codeclimate.com/github/uthando-cms/uthando-twitter)
+[![Dependency Status](https://www.versioneye.com/user/projects/55f2d29fd4d20400190001dc/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55f2d29fd4d20400190001dc)
+[![Packagist](https://img.shields.io/packagist/v/uthando-cms/uthando-twitter.svg)](https://packagist.org/packages/uthando-cms/uthando-twitter)
+
 
 This Module it designed to work with Uthando CMS, but can work indepentently too.
 In this release I have included a twitter feed view helper at the moment this is all this module does, I do hope to add more funtionality later.
