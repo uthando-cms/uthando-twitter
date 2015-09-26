@@ -1,9 +1,10 @@
 <?php
+
 return [
     'modules' => [
         'Application',
-        'UthandoTwitter',
         'UthandoCommon',
+        'UthandoTwitter',
     ],
     'module_listener_options' => [
         'module_paths' => [
@@ -13,6 +14,7 @@ return [
         ],
     ],
     'service_manager' => [
+        'use_defaults' => true,
         'invokables' => [
             'ModuleRouteListener' => 'Zend\Mvc\ModuleRouteListener',
         ],

@@ -1,4 +1,13 @@
 <?php
+/**
+ * Uthando CMS (http://www.shaunfreeman.co.uk/)
+ *
+ * @package   UthandoTwitter\Service
+ * @author    Shaun Freeman <shaun@shaunfreeman.co.uk>
+ * @copyright Copyright (c) 2014 Shaun Freeman. (http://www.shaunfreeman.co.uk)
+ * @license   see LICENSE.txt
+ */
+
 namespace UthandoTwitter\Service;
 
 use UthandoTwitter\Model\TweetCollection;
@@ -6,15 +15,20 @@ use ZendService\Twitter\Response;
 use ZendService\Twitter\Twitter as TwitterService;
 use UthandoCommon\Cache\CacheTrait;
 
+/**
+ * Class Twitter
+ *
+ * @package UthandoTwitter\Service
+ */
 class Twitter
 {
     use CacheTrait;
-    
+
     /**
      * @var TwitterService
      */
     protected $twitter;
-    
+
     /**
      * @var array
      */
@@ -53,7 +67,7 @@ class Twitter
                 'errors' => $errors,
             ];
         }
-        
+
         return $tweets;
     }
 
@@ -66,7 +80,7 @@ class Twitter
         if (!in_array($option, $this->options)) {
             return null;
         }
-        
+
         return $this->options[$option];
     }
 

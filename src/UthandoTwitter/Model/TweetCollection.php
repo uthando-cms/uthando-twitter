@@ -1,9 +1,23 @@
 <?php
+/**
+ * Uthando CMS (http://www.shaunfreeman.co.uk/)
+ *
+ * @package   UthandoTwitter\Model
+ * @author    Shaun Freeman <shaun@shaunfreeman.co.uk>
+ * @copyright Copyright (c) 2014 Shaun Freeman. (http://www.shaunfreeman.co.uk)
+ * @license   see LICENSE.txt
+ */
+
 namespace UthandoTwitter\Model;
 
 use UthandoCommon\Model\AbstractCollection;
 use Zend\Filter\Word\UnderscoreToCamelCase;
 
+/**
+ * Class TweetCollection
+ *
+ * @package UthandoTwitter\Model
+ */
 class TweetCollection extends AbstractCollection
 {
     protected $entityClass = 'UthandoTwitter\Model\Tweet';
@@ -12,60 +26,60 @@ class TweetCollection extends AbstractCollection
      * @var string
      */
     protected $userName;
-    
+
     /**
      * @var string
      */
     protected $screenName;
-    
+
     /**
      * @var int
      */
     protected $displayLimit = 4;
-    
+
     /**
      * @var bool
      */
     protected $showDirectTweets = false;
-    
+
     /**
      * @var bool
      */
     protected $showRetweets = true;
-    
+
     /**
      * @var bool
      */
     protected $showTweetLinks = true;
-    
+
     /**
      * @var bool
      */
     protected $showProfilePic = true;
-    
+
     /**
      * @var int
      */
     protected $position = 0;
-    
+
     public function __construct(array $tweets = array(), array $options = array())
     {
         if (!empty($options)) {
             $this->setOptions($options);
         }
-        
+
         if (!empty($tweets)) {
             $this->addTweets($tweets);
         }
     }
-    
+
     public function setOptions(array $options)
     {
         $filter = new UnderscoreToCamelCase();
-        
+
         foreach ($options as $key => $value) {
             $option = 'set' . $filter->filter($key);
-            
+
             if (method_exists($this, $option)) {
                 $this->$option($value);
             }
@@ -79,14 +93,14 @@ class TweetCollection extends AbstractCollection
     public function addTweets($tweets)
     {
         $count = 1;
-        
+
         foreach ($tweets as $tweet) {
             if ($count > $this->getDisplayLimit()) {
                 break;
             }
-            
+
             $entity = new Tweet();
-            
+
             $entity->setIdStr($tweet->id_str)
                 ->setUserId($tweet->user->id)
                 ->setUserName($tweet->user->name)
@@ -114,7 +128,7 @@ class TweetCollection extends AbstractCollection
                     ->setEntities($tweet->retweeted_status->entities);
                 $entity->setRetweetStatus($retweet);
             }
-            
+
             if (
                 (($this->getShowRetweets()) || ((!$entity->isRetweet()) && (!$this->getShowRetweets())))
                 && (($this->getShowDirectTweets()) || ((!$this->getShowDirectTweets()) && (!$entity->isDirect())))
@@ -124,22 +138,22 @@ class TweetCollection extends AbstractCollection
                 $count++;
             }
         }
-        
+
         return $this->count();
     }
-    
+
     /**
      * Check to see if we want to terminate this loop.
      */
     public function valid()
     {
         $valid = $this->current();
-        
+
         // stop the loop I want to get off.
         if ((($this->position + 1) > $this->displayLimit)) {
             $valid = false;
         }
-        
+
         return $valid;
     }
 
@@ -157,7 +171,7 @@ class TweetCollection extends AbstractCollection
      */
     public function setUserName($userName)
     {
-        $this->userName = (string) $userName;
+        $this->userName = (string)$userName;
         return $this;
     }
 
@@ -175,7 +189,7 @@ class TweetCollection extends AbstractCollection
      */
     public function setScreenName($screenName)
     {
-        $this->screenName = (string) $screenName;
+        $this->screenName = (string)$screenName;
         return $this;
     }
 
@@ -193,7 +207,7 @@ class TweetCollection extends AbstractCollection
      */
     public function setDisplayLimit($displayLimit)
     {
-        $this->displayLimit = (int) $displayLimit;
+        $this->displayLimit = (int)$displayLimit;
         return $this;
     }
 
@@ -211,7 +225,7 @@ class TweetCollection extends AbstractCollection
      */
     public function setShowDirectTweets($showDirectTweets)
     {
-        $this->showDirectTweets = (bool) $showDirectTweets;
+        $this->showDirectTweets = (bool)$showDirectTweets;
         return $this;
     }
 
@@ -229,7 +243,7 @@ class TweetCollection extends AbstractCollection
      */
     public function setShowRetweets($showRetweets)
     {
-        $this->showRetweets = (bool) $showRetweets;
+        $this->showRetweets = (bool)$showRetweets;
         return $this;
     }
 
@@ -247,7 +261,7 @@ class TweetCollection extends AbstractCollection
      */
     public function setShowTweetLinks($showTweetLinks)
     {
-        $this->showTweetLinks = (bool) $showTweetLinks;
+        $this->showTweetLinks = (bool)$showTweetLinks;
         return $this;
     }
 
@@ -265,7 +279,7 @@ class TweetCollection extends AbstractCollection
      */
     public function setShowProfilePic($showProfilePic)
     {
-        $this->showProfilePic = (bool) $showProfilePic;
+        $this->showProfilePic = (bool)$showProfilePic;
         return $this;
     }
 }
