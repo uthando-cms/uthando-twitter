@@ -15,6 +15,13 @@ use UthandoTwitterTest\Framework\ApplicationTestCase;
 
 class TwitterControllerTest extends ApplicationTestCase
 {
+    public function testTwitterFeedActionOnlyAcceptsXmlHttpRequest()
+    {
+        $this->setTraceError(false);
+        $this->dispatch('/twitter');
+        $this->assertResponseStatusCode(500);
+    }
+
     public function testTwitterFeedAction()
     {
         $serviceMock = $this->getMockBuilder('UthandoTwitter\Service\Twitter')
