@@ -5,7 +5,7 @@
  * @package   UthandoTwitter\Model
  * @author    Shaun Freeman <shaun@shaunfreeman.co.uk>
  * @copyright Copyright (c) 2014 Shaun Freeman. (http://www.shaunfreeman.co.uk)
- * @license   see LICENSE.txt
+ * @license   see LICENSE
  */
 
 namespace UthandoTwitter\Model;
@@ -82,6 +82,37 @@ class Tweet
     /**
      * @return boolean
      */
+    public function isDirect()
+    {
+        return (substr($this->getText(false), 0, 1) == '@') ? true : false;
+    }
+
+    /**
+     * @param bool $showTweetLinks
+     * @return string
+     */
+    public function getText($showTweetLinks = true)
+    {
+        if ($this->isRetweet()) {
+            return $this->getRetweetStatus()->getText();
+        }
+
+        return ($showTweetLinks) ? $this->formatLinks($this->text) : $this->text;
+    }
+
+    /**
+     * @param $text
+     * @return $this
+     */
+    public function setText($text)
+    {
+        $this->text = $text;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
     public function isRetweet()
     {
         $retweet = $this->getRetweetStatus();
@@ -89,72 +120,21 @@ class Tweet
     }
 
     /**
-     * @return boolean
+     * @return Tweet
      */
-    public function isDirect()
+    public function getRetweetStatus()
     {
-        return (substr($this->getText(false), 0, 1) == '@') ? true : false;
+        return $this->retweetStatus;
     }
 
     /**
-     * @return string
+     * @param Tweet $retweetStatus
+     * @return $this
      */
-    public function reweetedBy()
+    public function setRetweetStatus(Tweet $retweetStatus)
     {
-        return $this->userName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTimePostedShort()
-    {
-        return $this->getTime('d M');
-    }
-
-    /**
-     * @return string
-     */
-    public function getRelativeTime()
-    {
-        $now = new DateTime();
-        $delta = $now->format('U') - $this->getTime('U');
-
-        if ($delta < 60) {
-            $relative = '1m';
-        } else if ($delta < 120) {
-            $relative = '1m';
-        } else if ($delta < (60 * 60)) {
-            $relative = ($delta / 60) . 'm';
-        } else if ($delta < (120 * 60)) {
-            $relative = '1h';
-        } else if ($delta < (24 * 60 * 60)) {
-            $relative = round($delta / 3600) . 'h';
-        } else if ($delta < (48 * 60 * 60)) {
-            //return '1 day';
-            $relative = $this->getTime('d M');
-        } else {
-            $relative = $this->getTime('d M');
-        }
-
-        return $relative;
-    }
-
-    /**
-     * @param string $format
-     * @return string
-     */
-    public function getTime($format = null)
-    {
-        $format = ($format) ? $format : DateTime::W3C;
-
-        if ($this->isRetweet()) {
-            $time = $this->getRetweetStatus()->getTime($format);
-        } else {
-            $time = $this->time->format($format);
-        }
-
-        return $time;
+        $this->retweetStatus = $retweetStatus;
+        return $this;
     }
 
     /**
@@ -185,6 +165,64 @@ class Tweet
     }
 
     /**
+     * @param string $which
+     * @return array:
+     */
+    public function getEntities($which)
+    {
+        if ($this->isRetweet()) {
+            return $this->getRetweetStatus()->getEntities($which);
+        }
+
+        $entity = (isset($this->entities->$which)) ? $this->entities->$which : array();
+
+        return $entity;
+    }
+
+    /**
+     * @param object $entities
+     * @return \UthandoTwitter\Model\Tweet
+     */
+    public function setEntities($entities)
+    {
+        $this->entities = $entities;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function reweetedBy()
+    {
+        return $this->userName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTimePostedShort()
+    {
+        return $this->getTime('d M');
+    }
+
+    /**
+     * @param string $format
+     * @return string
+     */
+    public function getTime($format = null)
+    {
+        $format = ($format) ? $format : DateTime::W3C;
+
+        if ($this->isRetweet()) {
+            $time = $this->getRetweetStatus()->getTime($format);
+        } else {
+            $time = $this->time->format($format);
+        }
+
+        return $time;
+    }
+
+    /**
      * @param string $time
      * @return \UthandoTwitter\Model\Tweet
      */
@@ -192,6 +230,34 @@ class Tweet
     {
         $this->time = new DateTime($time);
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRelativeTime()
+    {
+        $now = new DateTime();
+        $delta = $now->format('U') - $this->getTime('U');
+
+        if ($delta < 60) {
+            $relative = '1m';
+        } else if ($delta < 120) {
+            $relative = '1m';
+        } else if ($delta < (60 * 60)) {
+            $relative = ($delta / 60) . 'm';
+        } else if ($delta < (120 * 60)) {
+            $relative = '1h';
+        } else if ($delta < (24 * 60 * 60)) {
+            $relative = round($delta / 3600) . 'h';
+        } else if ($delta < (48 * 60 * 60)) {
+            //return '1 day';
+            $relative = $this->getTime('d M');
+        } else {
+            $relative = $this->getTime('d M');
+        }
+
+        return $relative;
     }
 
     /**
@@ -370,72 +436,6 @@ class Tweet
     public function setFavoriteCount($favoriteCount)
     {
         $this->favoriteCount = $favoriteCount;
-        return $this;
-    }
-
-    /**
-     * @param bool $showTweetLinks
-     * @return string
-     */
-    public function getText($showTweetLinks = true)
-    {
-        if ($this->isRetweet()) {
-            return $this->getRetweetStatus()->getText();
-        }
-
-        return ($showTweetLinks) ? $this->formatLinks($this->text) : $this->text;
-    }
-
-    /**
-     * @param $text
-     * @return $this
-     */
-    public function setText($text)
-    {
-        $this->text = $text;
-        return $this;
-    }
-
-    /**
-     * @return Tweet
-     */
-    public function getRetweetStatus()
-    {
-        return $this->retweetStatus;
-    }
-
-    /**
-     * @param Tweet $retweetStatus
-     * @return $this
-     */
-    public function setRetweetStatus(Tweet $retweetStatus)
-    {
-        $this->retweetStatus = $retweetStatus;
-        return $this;
-    }
-
-    /**
-     * @param string $which
-     * @return array:
-     */
-    public function getEntities($which)
-    {
-        if ($this->isRetweet()) {
-            return $this->getRetweetStatus()->getEntities($which);
-        }
-
-        $entity = (isset($this->entities->$which)) ? $this->entities->$which : array();
-
-        return $entity;
-    }
-
-    /**
-     * @param object $entities
-     * @return \UthandoTwitter\Model\Tweet
-     */
-    public function setEntities($entities)
-    {
-        $this->entities = $entities;
         return $this;
     }
 }

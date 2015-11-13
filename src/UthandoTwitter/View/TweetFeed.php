@@ -5,7 +5,7 @@
  * @package   UthandoTwitter\View
  * @author    Shaun Freeman <shaun@shaunfreeman.co.uk>
  * @copyright Copyright (c) 2014 Shaun Freeman. (http://www.shaunfreeman.co.uk)
- * @license   see LICENSE.txt
+ * @license   see LICENSE
  */
 
 namespace UthandoTwitter\View;
@@ -47,11 +47,44 @@ class TweetFeed extends AbstractViewHelper
     /**
      * @return string
      */
+    public function __toString()
+    {
+        return $this->render();
+    }
+
+    /**
+     * @return string
+     */
     public function render()
     {
         $partial = $this->getPartial();
 
         return $this->renderPartial($partial);
+    }
+
+    /**
+     * Returns partial view script to use for rendering tweets
+     *
+     * @return string|array|null
+     */
+    public function getPartial()
+    {
+        return $this->partial;
+    }
+
+    /**
+     * Sets which partial view script to use for rendering tweets
+     *
+     * @param  string|array $partial
+     * @return \UthandoTwitter\View\TweetFeed
+     */
+    public function setPartial($partial)
+    {
+        if (null === $partial || is_string($partial) || is_array($partial)) {
+            $this->partial = $partial;
+        }
+
+        return $this;
     }
 
     /**
@@ -109,38 +142,5 @@ class TweetFeed extends AbstractViewHelper
         }
 
         return $this->twitter;
-    }
-
-    /**
-     * Sets which partial view script to use for rendering tweets
-     *
-     * @param  string|array $partial
-     * @return \UthandoTwitter\View\TweetFeed
-     */
-    public function setPartial($partial)
-    {
-        if (null === $partial || is_string($partial) || is_array($partial)) {
-            $this->partial = $partial;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Returns partial view script to use for rendering tweets
-     *
-     * @return string|array|null
-     */
-    public function getPartial()
-    {
-        return $this->partial;
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->render();
     }
 }

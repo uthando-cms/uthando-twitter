@@ -5,7 +5,7 @@
  * @package   UthandoTwitter\Service
  * @author    Shaun Freeman <shaun@shaunfreeman.co.uk>
  * @copyright Copyright (c) 2014 Shaun Freeman. (http://www.shaunfreeman.co.uk)
- * @license   see LICENSE.txt
+ * @license   see LICENSE
  */
 
 namespace UthandoTwitter\Service;
@@ -54,6 +54,19 @@ class Twitter
     }
 
     /**
+     * @param $option
+     * @return null
+     */
+    public function getOption($option)
+    {
+        if (!in_array($option, $this->options)) {
+            return null;
+        }
+
+        return $this->options[$option];
+    }
+
+    /**
      * @param Response $response
      * @return array|TweetCollection
      */
@@ -72,16 +85,11 @@ class Twitter
     }
 
     /**
-     * @param $option
-     * @return null
+     * @return array
      */
-    public function getOption($option)
+    public function getOptions()
     {
-        if (!in_array($option, $this->options)) {
-            return null;
-        }
-
-        return $this->options[$option];
+        return $this->options;
     }
 
     /**
@@ -95,11 +103,11 @@ class Twitter
     }
 
     /**
-     * @return array
+     * @return TwitterService
      */
-    public function getOptions()
+    public function getTwitter()
     {
-        return $this->options;
+        return $this->twitter;
     }
 
     /**
@@ -110,13 +118,5 @@ class Twitter
     {
         $this->twitter = $twitter;
         return $this;
-    }
-
-    /**
-     * @return TwitterService
-     */
-    public function getTwitter()
-    {
-        return $this->twitter;
     }
 }

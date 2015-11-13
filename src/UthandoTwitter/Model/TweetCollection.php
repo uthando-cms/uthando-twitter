@@ -5,7 +5,7 @@
  * @package   UthandoTwitter\Model
  * @author    Shaun Freeman <shaun@shaunfreeman.co.uk>
  * @copyright Copyright (c) 2014 Shaun Freeman. (http://www.shaunfreeman.co.uk)
- * @license   see LICENSE.txt
+ * @license   see LICENSE
  */
 
 namespace UthandoTwitter\Model;
@@ -143,6 +143,60 @@ class TweetCollection extends AbstractCollection
     }
 
     /**
+     * @return int
+     */
+    public function getDisplayLimit()
+    {
+        return $this->displayLimit;
+    }
+
+    /**
+     * @param $displayLimit
+     * @return $this
+     */
+    public function setDisplayLimit($displayLimit)
+    {
+        $this->displayLimit = (int)$displayLimit;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getShowRetweets()
+    {
+        return $this->showRetweets;
+    }
+
+    /**
+     * @param $showRetweets
+     * @return $this
+     */
+    public function setShowRetweets($showRetweets)
+    {
+        $this->showRetweets = (bool)$showRetweets;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getShowDirectTweets()
+    {
+        return $this->showDirectTweets;
+    }
+
+    /**
+     * @param $showDirectTweets
+     * @return $this
+     */
+    public function setShowDirectTweets($showDirectTweets)
+    {
+        $this->showDirectTweets = (bool)$showDirectTweets;
+        return $this;
+    }
+
+    /**
      * Check to see if we want to terminate this loop.
      */
     public function valid()
@@ -190,60 +244,6 @@ class TweetCollection extends AbstractCollection
     public function setScreenName($screenName)
     {
         $this->screenName = (string)$screenName;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getDisplayLimit()
-    {
-        return $this->displayLimit;
-    }
-
-    /**
-     * @param $displayLimit
-     * @return $this
-     */
-    public function setDisplayLimit($displayLimit)
-    {
-        $this->displayLimit = (int)$displayLimit;
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getShowDirectTweets()
-    {
-        return $this->showDirectTweets;
-    }
-
-    /**
-     * @param $showDirectTweets
-     * @return $this
-     */
-    public function setShowDirectTweets($showDirectTweets)
-    {
-        $this->showDirectTweets = (bool)$showDirectTweets;
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getShowRetweets()
-    {
-        return $this->showRetweets;
-    }
-
-    /**
-     * @param $showRetweets
-     * @return $this
-     */
-    public function setShowRetweets($showRetweets)
-    {
-        $this->showRetweets = (bool)$showRetweets;
         return $this;
     }
 

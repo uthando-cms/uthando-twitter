@@ -5,13 +5,13 @@
  * @package   UthandoTwitter\Controller
  * @author    Shaun Freeman <shaun@shaunfreeman.co.uk>
  * @copyright Copyright (c) 2014 Shaun Freeman. (http://www.shaunfreeman.co.uk)
- * @license   see LICENSE.txt
+ * @license   see LICENSE
  */
 
 namespace UthandoTwitter\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
-use UthandoCommon\Controller\ServiceTrait;
+use UthandoCommon\Service\ServiceTrait;
 use Zend\View\Model\ViewModel;
 
 /**

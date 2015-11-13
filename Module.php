@@ -5,18 +5,22 @@
  * @package   UthandoTwitter
  * @author    Shaun Freeman <shaun@shaunfreeman.co.uk>
  * @copyright Copyright (c) 2014 Shaun Freeman. (http://www.shaunfreeman.co.uk)
- * @license   see LICENSE.txt
+ * @license   see LICENSE
  */
 
 namespace UthandoTwitter;
+use UthandoCommon\Config\ConfigInterface;
+use UthandoCommon\Config\ConfigTrait;
 
 /**
  * Class Module
  *
  * @package UthandoTwitter
  */
-class Module
+class Module implements ConfigInterface
 {
+    use ConfigTrait;
+
     /**
      * @return array
      */
