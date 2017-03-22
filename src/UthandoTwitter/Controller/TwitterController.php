@@ -29,10 +29,6 @@ class TwitterController extends AbstractActionController
      */
     public function twitterFeedAction()
     {
-        if (!$this->getRequest()->isXmlHttpRequest()) {
-            throw new \Exception('Not allowed');
-        }
-
         $viewModel = new ViewModel();
         $viewModel->setTerminal(true);
 
