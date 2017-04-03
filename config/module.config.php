@@ -34,7 +34,6 @@ return [
                         '__NAMESPACE__' => 'UthandoTwitter\Controller',
                         'controller'    => 'Twitter',
                         'action'        => 'twitter-feed',
-                        'force-ssl'     => 'http'
                     ],
                 ],
                 'may_terminate' => true,

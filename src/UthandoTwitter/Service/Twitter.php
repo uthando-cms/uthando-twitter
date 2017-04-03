@@ -43,7 +43,7 @@ class Twitter
         $response = $this->getCacheItem($screenName);
 
         if (!$response) {
-            $response = $this->twitter->statusesUserTimeline([
+            $response = $this->getTwitter()->statusesUserTimeline([
                 'screen_name' => ($screenName) ? $screenName : $this->getOption('screen_name')
             ]);
 
