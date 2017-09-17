@@ -1,6 +1,19 @@
 <?php
 
 return [
+    'asset_manager' => [
+        'resolver_configs' => [
+            'collections' => [
+                'js/uthando.js' => [
+                ],
+                'css/uthando.css' => [
+                ],
+            ],
+            'paths' => [
+                'UthandoTwitter' => __DIR__ . '../public',
+            ],
+        ],
+    ],
     'controllers' => [
         'invokables' => [
             'UthandoTwitter\Controller\Twitter' => 'UthandoTwitter\Controller\TwitterController',
