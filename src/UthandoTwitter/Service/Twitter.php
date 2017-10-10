@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Uthando CMS (http://www.shaunfreeman.co.uk/)
  *
@@ -34,11 +34,7 @@ class Twitter
      */
     protected $options;
 
-    /**
-     * @param null $screenName
-     * @return array|TweetCollection
-     */
-    public function getUserTimeLine($screenName = null)
+    public function getUserTimeLine(string $screenName)
     {
         $response = $this->getCacheItem($screenName);
 
@@ -102,19 +98,12 @@ class Twitter
         return $this;
     }
 
-    /**
-     * @return TwitterService
-     */
-    public function getTwitter()
+    public function getTwitter(): TwitterService
     {
         return $this->twitter;
     }
 
-    /**
-     * @param TwitterService $twitter
-     * @return $this
-     */
-    public function setTwitter(TwitterService $twitter)
+    public function setTwitter(TwitterService $twitter): Twitter
     {
         $this->twitter = $twitter;
         return $this;

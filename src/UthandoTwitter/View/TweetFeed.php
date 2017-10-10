@@ -44,6 +44,13 @@ class TweetFeed extends AbstractViewHelper
         return $this;
     }
 
+    public function getScreenName()
+    {
+        $config = $this->getConfig('uthando_twitter');
+
+        return $config['options']['screen_name'] ?? '';
+    }
+
     /**
      * @return string
      */
