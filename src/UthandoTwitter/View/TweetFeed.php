@@ -110,7 +110,7 @@ class TweetFeed extends AbstractViewHelper
             );
         }
 
-        $timeLine = $this->getTwitter()->getUserTimeLine();
+        $timeLine = $this->getTwitter()->getUserTimeLine($this->getScreenName());
 
         $model = array(
             'tweets' => $timeLine

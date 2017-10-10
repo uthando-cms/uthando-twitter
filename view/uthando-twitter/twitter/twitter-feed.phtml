@@ -1,10 +1,10 @@
 <?php if (!isset($this->tweets['errors'])):?>
 <link href="<?=$this->basePath('/css/tweet-feed.css');?>" media="screen,print" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="<?=$this->basePath('/js/twitter.intent.js')?>"></script>
 
+    <?php $this->inlineScript()->appendFile($this->basePath('/js/twitter.intent.js'));?>
 <h5>
     <a href="https://twitter.com/" class="twitter-logo">
-        <img src="<?=$this->basePath('/themes/default/assets/img/twitter-bird-light.png'); ?>" alt="twitter bird">
+        <img src="<?=$this->basePath('/img/twitter-bird-light.png'); ?>" alt="twitter bird">
     </a>
     <?=$this->tweets->getUsername(); ?> 
     <span class="screen-name">
@@ -15,9 +15,11 @@
 <?php /* @var $tweet \UthandoTwitter\Model\Tweet */?>
 <?php foreach($this->tweets as $tweet): ?>
 <div class="media">
-    <a class="p-image pull-left" href="https://twitter.com/intent/user?user_id=<?=$tweet->getUserId(); ?>" aria-label="<?=$tweet->getUserName(); ?>(screen name: <?=$tweet->getScreenName(); ?>)">
-        <img class="media-object" src="<?=$tweet->getProfileImage(); ?>">
-    </a>
+    <div class="media-left">
+        <a class="p-image" href="https://twitter.com/intent/user?user_id=<?=$tweet->getUserId(); ?>" aria-label="<?=$tweet->getUserName(); ?>(screen name: <?=$tweet->getScreenName(); ?>)">
+            <img class="media-object" src="<?=$tweet->getProfileImage(); ?>">
+        </a>
+    </div>
     
     <div class="media-body">
         
@@ -28,7 +30,7 @@
                     <span class="p-name"><?=$tweet->getUserName(); ?></span>
                     <?php if ($tweet->getVerified()): ?>
                     <span class="verified" title="Verified Account" aria-label="Verified Account">
-                        <img src="<?=$this->basePath('/themes/default/assets/img/twitter-verified.png'); ?>" alt="twitter verified">
+                        <img src="<?=$this->basePath('/img/twitter-verified.png'); ?>" alt="twitter verified">
                     </span>
                     <?php endif; ?>
                 </span>
@@ -36,13 +38,13 @@
                     @<?=$tweet->getScreenName(); ?>
                 </span>
             </a>
-            <a class="permalink pull-right" href="https://twitter.com/intent/user?user_id=<?=$tweet->getUserId(); ?>" data-datetime="<?=$tweet->getTime(); ?>">
+            <a class="permalink" href="https://twitter.com/intent/user?user_id=<?=$tweet->getUserId(); ?>" data-datetime="<?=$tweet->getTime(); ?>">
                 <time class="dt-updated" datetime="<?=$tweet->getTime(); ?>" title="Time posted: <?=$tweet->getTime(); ?>" aria-label="Posted on <?=$tweet->getTimePostedShort(); ?>">
                     <?=$tweet->getRelativeTime(); ?>
                 </time>
             </a>
         </h4>
-        
+
         <p class="entry-title">
             <?=$tweet->getText($this->tweets->getShowTweetLinks()); ?>
         </p>

@@ -47,8 +47,6 @@ class TwitterFactory implements FactoryInterface
             ->setTwitter($twitter)
             ->setCache($cache);
 
-        $service->setCache($cache);
-
         return $service;
     }
 }

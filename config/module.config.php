@@ -10,7 +10,7 @@ return [
                 ],
             ],
             'paths' => [
-                'UthandoTwitter' => __DIR__ . '../public',
+                'UthandoTwitter' => __DIR__ . '/../public',
             ],
         ],
     ],

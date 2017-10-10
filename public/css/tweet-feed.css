@@ -4,18 +4,10 @@
     margin-left: 10px;
 }
 
-#twitter-feed .media {
-	border-top: 1px solid #eee;
-	margin: 0px;
-}
-
 #twitter-feed .media-body,
 #twitter-feed .p-image {
+    padding-top: 10px;
 	margin: 10px;
-}
-
-#twitter-feed .media-heading {
-	height: 16px;
 }
 
 #twitter-feed .entry-title,

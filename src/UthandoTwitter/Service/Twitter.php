@@ -10,6 +10,7 @@
 
 namespace UthandoTwitter\Service;
 
+use UthandoCommon\Cache\CacheStorageAwareInterface;
 use UthandoTwitter\Model\TweetCollection;
 use ZendService\Twitter\Response;
 use ZendService\Twitter\Twitter as TwitterService;
@@ -20,7 +21,7 @@ use UthandoCommon\Cache\CacheTrait;
  *
  * @package UthandoTwitter\Service
  */
-class Twitter
+class Twitter implements CacheStorageAwareInterface
 {
     use CacheTrait;
 
