@@ -11,6 +11,7 @@
 namespace UthandoTwitter\View;
 
 use UthandoCommon\View\AbstractViewHelper;
+use UthandoTwitter\Service\Twitter;
 use Zend\Stdlib\Exception\RuntimeException;
 use Zend\Stdlib\Exception\InvalidArgumentException;
 use Zend\View\Helper\Partial;
@@ -46,9 +47,9 @@ class TweetFeed extends AbstractViewHelper
 
     public function getScreenName()
     {
-        $config = $this->getConfig('uthando_twitter');
+        $config = $this->getConfig('uthando_social_media');
 
-        return $config['options']['screen_name'] ?? '';
+        return $config['twitter']['screen_name'] ?? '';
     }
 
     /**
@@ -145,7 +146,7 @@ class TweetFeed extends AbstractViewHelper
         if (!$this->twitter) {
             $this->twitter = $this->getServiceLocator()
                 ->getServiceLocator()
-                ->get('UthandoTwitter\Service\Twitter');
+                ->get(Twitter::class);
         }
 
         return $this->twitter;

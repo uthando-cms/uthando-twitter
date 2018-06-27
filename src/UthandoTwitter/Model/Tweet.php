@@ -245,14 +245,14 @@ class Tweet
         } else if ($delta < 120) {
             $relative = '1m';
         } else if ($delta < (60 * 60)) {
-            $relative = ($delta / 60) . 'm';
+            $relative = round($delta / 60) . 'm';
         } else if ($delta < (120 * 60)) {
             $relative = '1h';
         } else if ($delta < (24 * 60 * 60)) {
             $relative = round($delta / 3600) . 'h';
         } else if ($delta < (48 * 60 * 60)) {
-            //return '1 day';
-            $relative = $this->getTime('d M');
+            return '1 day';
+            //$relative = $this->getTime('d M');
         } else {
             $relative = $this->getTime('d M');
         }

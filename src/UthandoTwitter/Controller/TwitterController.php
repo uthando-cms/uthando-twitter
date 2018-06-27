@@ -10,6 +10,7 @@
 
 namespace UthandoTwitter\Controller;
 
+use UthandoTwitter\Service\Twitter;
 use Zend\Mvc\Controller\AbstractActionController;
 use UthandoCommon\Service\ServiceTrait;
 use Zend\View\Model\ViewModel;
@@ -33,7 +34,7 @@ class TwitterController extends AbstractActionController
         $viewModel->setTerminal(true);
 
         /* @var $service \UthandoTwitter\Service\Twitter */
-        $service = $this->getService('UthandoTwitter\Service\Twitter');
+        $service = $this->getService(Twitter::class);
 
         $tweets = $service->getUserTimeLine();
         $viewModel->setVariable('tweets', $tweets);

@@ -16,21 +16,27 @@ return [
     ],
     'controllers' => [
         'invokables' => [
-            'UthandoTwitter\Controller\Twitter' => 'UthandoTwitter\Controller\TwitterController',
+            \UthandoTwitter\Controller\TwitterController::class => \UthandoTwitter\Controller\TwitterController::class,
+            \UthandoTwitter\Controller\SettingsController::class => \UthandoTwitter\Controller\SettingsController::class,
         ],
     ],
     'service_manager' => [
         'factories' => [
-            'UthandoTwitter\Service\Twitter' => 'UthandoTwitter\Service\TwitterFactory',
+            \Facebook\Facebook::class => \UthandoTwitter\Service\FacebookFactory::class,
+            \UthandoTwitter\Service\Twitter::class => \UthandoTwitter\Service\TwitterFactory::class,
+
+            \UthandoTwitter\Option\FacebookOptions::class => \UthandoTwitter\Option\FacebookOptionsFactory::class,
+            \UthandoTwitter\Option\TwitterOptions::class => \UthandoTwitter\Option\TwitterOptionsFactory::class,
         ],
     ],
     'view_helpers' => [
         'invokables' => [
-            'TweetFeed' => 'UthandoTwitter\View\TweetFeed',
+            'TweetFeed' => \UthandoTwitter\View\TweetFeed::class,
         ],
     ],
     'view_manager' => [
         'template_map' => [
+            'uthando-twitter/settings/index' => __DIR__ . '/../view/uthando-twitter/settings/index.phtml',
             'uthando-twitter/twitter/twitter-feed' => __DIR__ . '/../view/uthando-twitter/twitter/twitter-feed.phtml',
         ],
     ],
@@ -45,7 +51,7 @@ return [
                     ],
                     'defaults' => [
                         '__NAMESPACE__' => 'UthandoTwitter\Controller',
-                        'controller'    => 'Twitter',
+                        'controller'    => \UthandoTwitter\Controller\TwitterController::class,
                         'action'        => 'twitter-feed',
                     ],
                 ],

@@ -18,11 +18,11 @@ use Zend\Stdlib\AbstractOptions;
 class TwitterOptions extends AbstractOptions
 {
     protected $oauthOptions = [
-        'access_token' => [ // or use "accessToken" as the key; both work
+        'access_token' => [
             'token' => '',
             'secret' => '',
         ],
-        'oauth_options' => [ // or use "oauthOptions" as the key; both work
+        'oauth_options' => [
             'consumerKey' => '',
             'consumerSecret' => '',
         ],
@@ -75,7 +75,7 @@ class TwitterOptions extends AbstractOptions
      */
     public function setOauthOptions(array $oauthOptions): TwitterOptions
     {
-        $this->oauthOptions = $oauthOptions;
+        $this->oauthOptions = array_merge($this->oauthOptions, $oauthOptions);
         return $this;
     }
 
@@ -160,6 +160,14 @@ class TwitterOptions extends AbstractOptions
     }
 
     /**
+     * @return bool
+     */
+    public function getShowDirectTweets(): bool
+    {
+        return $this->showDirectTweets;
+    }
+
+    /**
      * @param bool $showDirectTweets
      * @return TwitterOptions
      */
@@ -167,6 +175,14 @@ class TwitterOptions extends AbstractOptions
     {
         $this->showDirectTweets = $showDirectTweets;
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getShowRetweets(): bool
+    {
+        return $this->showRetweets;
     }
 
     /**
@@ -196,6 +212,14 @@ class TwitterOptions extends AbstractOptions
     }
 
     /**
+     * @return bool
+     */
+    public function getShowTweetLinks(): bool
+    {
+        return $this->showTweetLinks;
+    }
+
+    /**
      * @param bool $showTweetLinks
      * @return TwitterOptions
      */
@@ -209,6 +233,14 @@ class TwitterOptions extends AbstractOptions
      * @return bool
      */
     public function isShowProfilePic(): bool
+    {
+        return $this->showProfilePic;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getShowProfilePic(): bool
     {
         return $this->showProfilePic;
     }

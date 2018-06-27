@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 /**
  * Uthando CMS (http://www.shaunfreeman.co.uk/)
  *
@@ -35,7 +35,7 @@ class Twitter implements CacheStorageAwareInterface
      */
     protected $options;
 
-    public function getUserTimeLine(string $screenName)
+    public function getUserTimeLine(string $screenName = '')
     {
         $response = $this->getCacheItem($screenName);
 

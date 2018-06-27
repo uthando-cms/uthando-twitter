@@ -8,14 +8,24 @@ return [
                     'privileges' => [
                         'allow' => [
                             'controllers' => [
-                                'UthandoTwitter\Controller\Twitter' => ['action' => ['twitter-feed']],
+                                \UthandoTwitter\Controller\TwitterController::class => ['action' => ['twitter-feed']],
+                            ],
+                        ],
+                    ],
+                ],
+                'admin' => [
+                    'privileges' => [
+                        'allow' => [
+                            'controllers' => [
+                                \UthandoTwitter\Controller\SettingsController::class => ['action' => 'all'],
                             ],
                         ],
                     ],
                 ],
             ],
             'resources' => [
-                'UthandoTwitter\Controller\Twitter',
+                \UthandoTwitter\Controller\TwitterController::class,
+                \UthandoTwitter\Controller\SettingsController::class,
             ],
         ],
     ],
