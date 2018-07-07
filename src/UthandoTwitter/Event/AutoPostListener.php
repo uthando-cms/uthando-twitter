@@ -21,6 +21,8 @@ class AutoPostListener implements ListenerAggregateInterface
 {
     use ListenerAggregateTrait;
 
+    const EVENT_TWITTER_STATUS = 'update.twitter.status';
+
     /**
      * @param EventManagerInterface $events
      */
@@ -30,7 +32,7 @@ class AutoPostListener implements ListenerAggregateInterface
 
         $this->listeners[] = $events->attach(
             AbstractService::class,
-            'update.twitter.status',
+            self::EVENT_TWITTER_STATUS,
             [$this, 'twitterStatusUpdate']
         );
     }
@@ -39,9 +41,9 @@ class AutoPostListener implements ListenerAggregateInterface
     {
         /* @var Twitter $twitter */
         $twitter = $e->getTarget()->getService(Twitter::class);
-        $status = $e->getParam('status');
+        $status = $e->getParam('string');
 
-        $response = $twitter->getTwitter()->statusesUpdate($status);
+        $response = $twitter->statusUpdate($status);
 
         $e->setParam('response', $response);
 

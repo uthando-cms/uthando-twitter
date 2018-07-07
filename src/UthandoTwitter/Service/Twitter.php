@@ -82,6 +82,19 @@ class Twitter implements CacheStorageAwareInterface
     }
 
     /**
+     * @param string $string
+     * @return Response
+     */
+    public function statusUpdate(string $string)
+    {
+        $service = $this->getTwitter();
+
+        $response = $service->statusesUpdate($string);
+
+        return $response;
+    }
+
+    /**
      * @return array
      */
     public function getOptions()

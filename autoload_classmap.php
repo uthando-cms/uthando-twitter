@@ -12,6 +12,7 @@ return array(
     'UthandoTwitter\Form\SocialMediaForm'                 => __DIR__ . '/src/UthandoTwitter/Form/SocialMediaForm.php',
     'UthandoTwitter\Form\TwitterAccessTokenFieldSet'      => __DIR__ . '/src/UthandoTwitter/Form/TwitterAccessTokenFieldSet.php',
     'UthandoTwitter\Form\TwitterOauthOptionsFieldSet'     => __DIR__ . '/src/UthandoTwitter/Form/TwitterOauthOptionsFieldSet.php',
+    'UthandoTwitter\Form\SocialMediaFieldSet'             => __DIR__ . '/src/UthandoTwitter/Form/SocialMediaFieldSet.php',
     'UthandoTwitter\Form\OauthOptionsFieldSet'            => __DIR__ . '/src/UthandoTwitter/Form/OauthOptionsFieldSet.php',
     'UthandoTwitter\Option\TwitterOptionsFactory'         => __DIR__ . '/src/UthandoTwitter/Option/TwitterOptionsFactory.php',
     'UthandoTwitter\Option\FacebookOptions'               => __DIR__ . '/src/UthandoTwitter/Option/FacebookOptions.php',
